@@ -1,6 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const arcBlue = '#0B72b9';
+const arcBlue = '#026bb1';
 const arcOrange = '#ffba60';
 
 export const theme = createMuiTheme({
@@ -27,6 +27,9 @@ export const theme = createMuiTheme({
 			textTransform: 'Capitalize',
 			fontWeight: 500,
 			fontSize: 16,
+		},
+		button: {
+			textTransform: 'none',
 		},
 	},
 });
