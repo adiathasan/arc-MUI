@@ -4,6 +4,7 @@ import HomeScreen from './screens/HomeScreen';
 import Header from './components/Header';
 import { ThemeProvider } from '@material-ui/styles';
 import { theme } from './theme/Theme';
+import Footer from './components/Footer';
 
 function App() {
 	return (
@@ -51,6 +52,7 @@ function App() {
 						<Route path='/' component={HomeScreen} exact />
 					</Switch>
 				</div>
+				<Footer />
 			</BrowserRouter>
 		</ThemeProvider>
 	);
