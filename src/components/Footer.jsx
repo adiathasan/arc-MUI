@@ -33,6 +33,7 @@ const Footer = () => {
 	const classes = useStyles();
 	return (
 		<footer className={classes.footer}>
+			<p title='heyyy'>Wowow</p>
 			<Hidden mdDown>
 				<Grid
 					container
