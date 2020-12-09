@@ -13,3 +13,11 @@ body {
 .active {
 	background-color: brown;
 }
+
+a {
+	color: #dfd7d7;
+}
+
+a:hover {
+	color: white;
+}

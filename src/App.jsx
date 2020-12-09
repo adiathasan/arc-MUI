@@ -5,12 +5,14 @@ import Header from './components/Header';
 import { ThemeProvider } from '@material-ui/styles';
 import { theme } from './theme/Theme';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<BrowserRouter>
-				<Header />
+				<Navbar />
+				{/* <Header /> */}
 				<div className='app__routes'>
 					<Switch>
 						<Route path='/contact' component={() => <div>contact</div>} exact />

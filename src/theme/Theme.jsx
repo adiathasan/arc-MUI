@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const arcBlue = '#026bb1';
-const arcOrange = '#ffba60';
+export const arcBlue = '#026bb1';
+export const arcOrange = '#ffba60';
 
 export const theme = createMuiTheme({
 	palette: {

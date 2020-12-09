@@ -216,7 +216,7 @@ const Header = () => {
 				<Tab className={classes.tab} />
 			</Tabs>
 			<Button
-				title='freeeeee'
+				title='free'
 				onClick={() => setActive(null)}
 				className={classes.btn}
 				component={NavLink}
