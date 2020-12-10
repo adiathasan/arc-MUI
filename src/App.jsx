@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
+
 import HomeScreen from './screens/HomeScreen';
-import Header from './components/Header';
-import { ThemeProvider } from '@material-ui/styles';
 import { theme } from './theme/Theme';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -12,7 +12,6 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<BrowserRouter>
 				<Navbar />
-				{/* <Header /> */}
 				<div className='app__routes'>
 					<Switch>
 						<Route path='/contact' component={() => <div>contact</div>} exact />
@@ -32,7 +31,7 @@ function App() {
 							exact
 						/>
 						<Route
-							path='/customesoftware'
+							path='/customsoftware'
 							component={() => <div>customesoftware</div>}
 							exact
 						/>

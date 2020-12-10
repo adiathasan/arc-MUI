@@ -14,12 +14,13 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useTheme from '@material-ui/styles/useTheme';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
-import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import { Button } from '@material-ui/core';
+import useRouteActive from '../hooks/useRouteActive';
 
 const styles = makeStyles((theme) => ({
 	logo: {
@@ -48,6 +49,10 @@ const styles = makeStyles((theme) => ({
 	},
 	estimate: {
 		borderRadius: '50px',
+		fontFamily: 'Pacifico',
+		'&:hover': {
+			backgroundColor: theme.palette.secondary.light,
+		},
 	},
 }));
 
@@ -72,7 +77,7 @@ const tabs = [
 
 const services = [
 	{ label: 'All Services', key: 0, link: '/services' },
-	{ label: 'Custome Software Development', key: 1, link: '/customesoftware' },
+	{ label: 'Custome Software Development', key: 1, link: '/customsoftware' },
 	{ label: 'Mobile App Development', key: 2, link: '/mobileapps' },
 	{ label: 'Website Development', key: 3, link: '/websites' },
 ];
@@ -81,17 +86,25 @@ const Navbar = () => {
 	const theme = useTheme();
 	const isDrawerActive = useMediaQuery(theme.breakpoints.down('md'));
 	const classes = styles();
-	const [value, setValue] = useState(0);
-	const [servicesIndex, setServicesIndex] = useState(null);
+
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [drawerOpen, setDrawerOpen] = useState(false);
+
+	const {
+		servicesIndex,
+		setServicesIndex,
+		values,
+		setValues,
+	} = useRouteActive();
+
+	const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 	const history = useHistory();
 
 	const { pathname } = history.location;
 
 	const handleClick = (key) => {
-		setValue(key);
+		setValues(key);
 		setServicesIndex(null);
 	};
 
@@ -100,7 +113,7 @@ const Navbar = () => {
 	};
 
 	const handleClose = () => {
-		setValue(1);
+		setValues(1);
 		setAnchorEl(null);
 	};
 
@@ -108,32 +121,32 @@ const Navbar = () => {
 		const servicesRoute = services.find((service) => service.link === pathname);
 
 		if (servicesRoute) {
-			setValue(1);
+			setValues(1);
 			setServicesIndex(servicesRoute.key);
 		}
 		switch (pathname) {
 			case '/estimate':
-				setValue(5);
+				setValues(5);
 				break;
 			case '/contact':
-				setValue(4);
+				setValues(4);
 				break;
 			case '/about':
-				setValue(3);
+				setValues(3);
 				break;
 			case '/revolution':
-				setValue(2);
+				setValues(2);
 				break;
 			case '/services':
-				setValue(1);
+				setValues(1);
 				break;
 			case '/':
-				setValue(0);
+				setValues(0);
 				break;
 			default:
 				break;
 		}
-	}, [pathname, value]);
+	}, [pathname, values, setValues, setServicesIndex]);
 	return (
 		<>
 			<HideOnScroll>
@@ -159,7 +172,7 @@ const Navbar = () => {
 						) : (
 							<Tabs
 								className={classes.tabs}
-								value={value}
+								value={values}
 								indicatorColor='primary'
 								variant='fullWidth'
 								aria-label='full width tabs'>
@@ -175,30 +188,24 @@ const Navbar = () => {
 												onMouseOver={handleServices}
 											/>
 										);
-									} else if (tab.key === 5) {
-										return (
-											<Tab
-												disableRipple
-												label={
-													<Button
-														className={classes.estimate}
-														color='secondary'
-														variant='contained'>
-														{tab.label}
-													</Button>
-												}
-												component={Link}
-												to={tab.link}
-												key={tab.key}
-												onClick={() => handleClick(tab.key)}
-											/>
-										);
 									} else {
 										return (
 											<Tab
 												className={classes.tab}
 												disableRipple
-												label={tab.label}
+												label={
+													tab.key === 5 ? (
+														<Button
+															disableElevation
+															className={classes.estimate}
+															color='secondary'
+															variant='contained'>
+															{tab.label}
+														</Button>
+													) : (
+														tab.label
+													)
+												}
 												component={Link}
 												to={tab.link}
 												key={tab.key}
@@ -229,10 +236,13 @@ const Navbar = () => {
 								</MenuItem>
 							))}
 						</Menu>
-						<Drawer
+						<SwipeableDrawer
+							disableBackdropTransition={!iOS}
+							disableDiscovery={iOS}
 							classes={{ paper: classes.drawer }}
 							anchor='right'
 							open={drawerOpen}
+							onOpen={() => setDrawerOpen(true)}
 							onClose={() => setDrawerOpen(false)}>
 							<List component='nav'>
 								{tabs.map((tab) => (
@@ -242,21 +252,21 @@ const Navbar = () => {
 											component={Link}
 											to={tab.link}
 											onClick={() => {
-												setValue(tab.key);
+												setValues(tab.key);
 												setDrawerOpen(false);
 											}}
-											selected={value === tab.key}>
+											selected={values === tab.key}>
 											<ListItemText>{tab.label}</ListItemText>
 										</ListItem>
 										<Divider />
 									</React.Fragment>
 								))}
 							</List>
-						</Drawer>
+						</SwipeableDrawer>
 					</Toolbar>
 				</AppBar>
 			</HideOnScroll>
-			<div style={{ marginBottom: '5rem' }} />
+			<div style={{ marginBottom: '5.9rem' }} />
 		</>
 	);
 };
