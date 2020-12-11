@@ -69,7 +69,7 @@ const Services = () => {
 
 	const theme = useTheme();
 
-	const downSm = useMediaQuery(theme.breakpoints.down('sm'));
+	// const downSm = useMediaQuery(theme.breakpoints.down('sm'));
 
 	const handleRoute = (e) => {
 		console.log(e.target.dataset.link);
