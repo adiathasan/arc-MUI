@@ -19,7 +19,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+
 import useRouteActive from '../hooks/useRouteActive';
 
 const styles = makeStyles((theme) => ({
@@ -28,6 +29,10 @@ const styles = makeStyles((theme) => ({
 	},
 	tabs: {
 		marginLeft: 'auto',
+		'& .Mui-selected': {
+			border: 'none',
+			borderBottom: '2px solid white',
+		},
 	},
 	tab: {
 		fontSize: '1.1rem',
@@ -35,6 +40,9 @@ const styles = makeStyles((theme) => ({
 	menu: {
 		backgroundColor: theme.palette.common.arcBlue,
 		color: 'white',
+		'& .MuiListItem-root.Mui-selected': {
+			backgroundColor: 'rgba(0, 0, 0, .4)',
+		},
 	},
 	icon: {
 		marginLeft: 'auto',
@@ -46,6 +54,9 @@ const styles = makeStyles((theme) => ({
 		maxWidth: '50%',
 		backgroundColor: theme.palette.common.arcBlue,
 		color: 'white',
+		'& .MuiListItem-root.Mui-selected': {
+			backgroundColor: 'rgba(0, 0, 0, .4)',
+		},
 	},
 	estimate: {
 		borderRadius: '50px',
@@ -66,22 +77,6 @@ const HideOnScroll = ({ children, window }) => {
 	);
 };
 
-const tabs = [
-	{ label: 'Home', key: 0, link: '/' },
-	{ label: 'Services', key: 1, link: '/services' },
-	{ label: 'The Revolution', key: 2, link: '/revolution' },
-	{ label: 'About Us', key: 3, link: '/about' },
-	{ label: 'Contact Us', key: 4, link: '/contact' },
-	{ label: 'Free Estimate', key: 5, link: '/estimate' },
-];
-
-const services = [
-	{ label: 'All Services', key: 0, link: '/services' },
-	{ label: 'Custome Software Development', key: 1, link: '/customsoftware' },
-	{ label: 'Mobile App Development', key: 2, link: '/mobileapps' },
-	{ label: 'Website Development', key: 3, link: '/websites' },
-];
-
 const Navbar = () => {
 	const theme = useTheme();
 	const isDrawerActive = useMediaQuery(theme.breakpoints.down('md'));
@@ -95,6 +90,8 @@ const Navbar = () => {
 		setServicesIndex,
 		values,
 		setValues,
+		services,
+		tabs,
 	} = useRouteActive();
 
 	const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -146,7 +143,7 @@ const Navbar = () => {
 			default:
 				break;
 		}
-	}, [pathname, values, setValues, setServicesIndex]);
+	}, [pathname, values, setValues, setServicesIndex, services]);
 	return (
 		<>
 			<HideOnScroll>

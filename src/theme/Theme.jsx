@@ -29,7 +29,7 @@ export const theme = createMuiTheme({
 			fontWeight: 700,
 			fontSize: '2rem',
 			color: arcBlue,
-			margin: '1rem 0',
+			margin: '.5rem 0',
 		},
 		h3: {
 			fontFamily: 'Pacifico',
@@ -48,6 +48,7 @@ export const theme = createMuiTheme({
 			color: arcGrey,
 			marginBottom: '.5rem',
 		},
+
 		subtitle1: {
 			color: arcGrey,
 		},

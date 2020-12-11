@@ -14,6 +14,7 @@ import customSoftware from '../assets/Custom Software Icon.svg';
 import mobileIcon from '../assets/mobileIcon.svg';
 import website from '../assets/website.svg';
 import repeatingBackground from '../assets/repeatingBackground.svg';
+// import useRouteActive from '../hooks/useRouteActive';
 
 const useStyles = makeStyles((theme) => ({
 	item: {
@@ -89,6 +90,13 @@ const useStyles = makeStyles((theme) => ({
 
 const HomeScreen = () => {
 	const classes = useStyles();
+
+	const handleRoute = (e) => {
+		console.log(e.target.data);
+	};
+
+	// const { setServicesIndex, setValues } = useRouteActive();
+
 	const props = useSpring({ opacity: 1, from: { opacity: 0 } });
 
 	return (
@@ -188,6 +196,7 @@ const HomeScreen = () => {
 								either mobile platform.
 							</Typography>
 							<Button
+								onClick={handleRoute}
 								component={Link}
 								to='/mobileapps'
 								variant='outlined'

@@ -49,7 +49,7 @@ const Footer = () => {
 							<Grid item component={Link} to='/services'>
 								Services
 							</Grid>
-							<Grid item component={Link} to='/customesoftware'>
+							<Grid item component={Link} to='/customsoftware'>
 								Custome Software Development
 							</Grid>
 							<Grid item component={Link} to='/mobileapps'>
