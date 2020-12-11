@@ -5,8 +5,8 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/styles';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { Link } from 'react-router-dom';
-import { useMediaQuery } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+// import { useMediaQuery } from '@material-ui/core';
+// import { useTheme } from '@material-ui/core/styles';
 
 import customSoftware from '../assets/Custom Software Icon.svg';
 import mobileIcon from '../assets/mobileIcon.svg';
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 const Services = () => {
 	const classes = useStyles();
 
-	const theme = useTheme();
+	// const theme = useTheme();
 
 	// const downSm = useMediaQuery(theme.breakpoints.down('sm'));
 
