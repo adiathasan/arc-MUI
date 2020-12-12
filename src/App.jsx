@@ -9,14 +9,16 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Services from './screens/Services';
 import CustomSoftware from './screens/CustomSoftware';
+import Contact from './screens/Contact';
 
 function App() {
+	// document.querySelector('body').style.background = '#18191A';
 	return (
 		<ThemeProvider theme={theme}>
 			<Navbar />
 			<div className='app__routes'>
 				<Switch>
-					<Route path='/contact' component={() => <div>contact</div>} exact />
+					<Route path='/contact' component={Contact} exact />
 					<Route path='/about' component={() => <div>about</div>} exact />
 					<Route
 						path='/websites'
